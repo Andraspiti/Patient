@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.max-width{
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preg-card {
+  width: 100vw;
+  height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .preg-card{
+    max-width: 33em;
+    min-height: 40em;
+    height: auto;
+  }
+
+}

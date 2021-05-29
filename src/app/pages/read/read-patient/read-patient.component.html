@@ -1,0 +1,55 @@
+<br>
+
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+  </tr>
+  <tr *ngFor="let patient of patients">
+    <td>{{ patient.payload.doc.data().name }}</td>
+    <td>{{ patient.payload.doc.data().name }}</td>
+  </tr>
+  <tr *ngFor="let patient of patients">
+    <td>{{ patient.payload.doc.data().postalCode }}</td>
+    <td>{{ patient.payload.doc.data().postalCode }}</td>
+  </tr>
+
+</table>
+
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Gender</th>
+    <th>Coffee List</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let patient of patients">
+    <td>
+      {{ patient.payload.doc.data().name }}
+    </td>
+    <td>{{ patient.payload.doc.data().name }}</td>
+    <td
+      [hidden]="patient.payload.doc.data().completed"
+      (click)="markCompleted(patient)"
+    >
+      <i class="material-icons">check</i>
+    </td>
+    <td
+      [hidden]="patient.payload.doc.data().completed"
+      (click)="deleteOrder(patient)"
+    >
+      <i class="material-icons">delete_forever</i>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+
+
+

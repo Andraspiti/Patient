@@ -1,0 +1,60 @@
+<div class="center">
+  <mat-card class="preg-card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h3>Create Patient</h3>
+      <mat-form-field class="max-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Pl. Kovács Béla" required formControlName="pname">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="max-width">
+        <mat-label>Telephone number </mat-label>
+        <input matInput type="text" placeholder="Pl. Kovács Béla" formControlName="tnumber">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="max-width">
+        <mat-label>Gender </mat-label>
+        <mat-select formControlName="genderSelect" >
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{gender}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="max-width">
+        <mat-label>Birth Date </mat-label>
+        <input matInput type="text" placeholder="2020.02.04"  formControlName="bdate">
+      </mat-form-field>
+
+      <div formGroupName="address">
+        <mat-form-field class="max-width">
+          <mat-label>Street name </mat-label>
+            <input matInput type="text" placeholder="Street name, number, direction & P.O. Box etc."  formControlName="line">
+        </mat-form-field>
+
+        <mat-form-field class="max-width">
+          <mat-label>City </mat-label>
+            <input matInput type="text" placeholder="City"  formControlName="city">
+        </mat-form-field>
+
+         <mat-form-field class="max-width">
+          <mat-label>Postal Code </mat-label>
+            <input matInput type="text" placeholder="Postal Code"  formControlName="postalCode">
+        </mat-form-field>
+
+         <mat-form-field class="max-width">
+          <mat-label>Country </mat-label>
+            <input matInput type="text" placeholder="Country "  formControlName="country">
+        </mat-form-field>
+      </div>
+      <br>
+      <br>
+      <button type="submit" mat-raised-button color="primary" class="max-width" [disabled]="form.invalid">CREATE</button>
+    </form>
+  </mat-card>
+
+</div>
+<!--   line: string,
+  city: string,
+  postalCode?: number,
+  country?: string, -->
