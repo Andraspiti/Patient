@@ -1,0 +1,10 @@
+<mat-card *ngIf="patient">
+  <mat-card-header>
+    <mat-card-title>Name: {{patient.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-content>Telephone Number: {{patient.telecom}} Birth Date: {{patient.birthDate}} Gender: {{patient.gender}}</mat-card-content>
+    <p>Address: {{patient.address.country}},  {{patient.address.postalCode}}  {{patient.address.city}}, {{patient.address.line}}</p>
+    <button mat-button color="warn" (click)="onClick(patient.id)">TÖRLÉS</button>
+  </mat-card-content>
+</mat-card>

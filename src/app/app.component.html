@@ -4,4 +4,9 @@
 </mat-toolbar>
 
 <app-preg></app-preg>
-<app-read-patient></app-read-patient>
+<div>
+  <div>
+    <app-patient-card *ngFor="let item of list$ | async "  [patient]="item"></app-patient-card>
+  </div>
+
+</div>

@@ -21,6 +21,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {CreatePatientComponent} from "./pages/create/create-patient.component";
 import { ReadPatientComponent } from "./pages/read/read-patient/read-patient.component";
 import {MatTableModule} from "@angular/material/table";
+import { PatientCardComponent } from './pages/patient-card/patient-card.component';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {MatTableModule} from "@angular/material/table";
     PregComponent,
     CreatePatientComponent,
     ReadPatientComponent,
-
+    PatientCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,12 +44,9 @@ import {MatTableModule} from "@angular/material/table";
     CommonModule, FormsModule, ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatChipsModule,
     MatButtonModule, MatSelectModule, MatTableModule,
-
-
-
   ],
 
-  providers: [PregComponent],
+  providers: [PregComponent, ReadPatientComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

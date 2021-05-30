@@ -1,19 +1,32 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Gender, Patient} from "./models/patient/patient";
+import { ReadPatientComponent } from "./pages/read/read-patient/read-patient.component";
+import {Observable, Subscription, throwError} from "rxjs";
+import {catchError} from "rxjs/operators";
+import {FbBaseService} from "./service/fb-base.service";
+import {FormControl} from "@angular/forms";
+import {PatientService } from "./service/patient.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy{
+  //  patientExample: Patient = {gender: Gender.unknown, id: "", name: ""};
+
+
   title = 'patient';
+  patients = this.readPatient.readPatient()
+  errorObject = null;
 
-//  patientExample: Patient = {gender: Gender.unknown, id: "", name: ""};
+  myControl = new FormControl();
+  list$: Observable<Patient[]> | null = null;
+  masiklist$: Observable<string[]> | null = null;
 
+  getSub: Subscription | null = null;
 
-
-  constructor() {
+  constructor(private readPatient: ReadPatientComponent, private patientService: PatientService) {
 /*
     this.patientExample = {
       id: "420",
@@ -136,6 +149,23 @@ export class AppComponent {
   }
 }
 */
+  }
+
+
+  ngOnInit() {
+    this.get();
+  }
+  ngOnDestroy() {
+    if (this.getSub) {
+      this.getSub.unsubscribe();
+    }
+  }
+
+  get(): void {
+    this.errorObject = null;
+    this.list$ = this.readPatient.getPatient();
+
+    this.masiklist$ = this.myControl.valueChanges;
   }
 
 }

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Patient } from "../models/patient/patient";
-import { AngularFirestore } from "@angular/fire/firestore";
+import {AngularFirestore, CollectionReference} from "@angular/fire/firestore";
+import {Observable} from "rxjs";
+import firebase from "firebase";
+import Query = firebase.database.Query;
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
   constructor(private firestore: AngularFirestore) {}
-
 
   createPatient(data: unknown) {
     return new Promise<any>((resolve, reject) =>{
@@ -18,36 +20,32 @@ export class PatientService {
     });
   }
 
+  async add(newData: Patient, id?: string): Promise<string>{
+    const uid = id ? id: this.firestore.createId();
+    newData.id = uid;
+    await this.firestore.collection('Patient').doc(uid).set(newData);
+    return uid;
+  }
+
+
   getPatients() {
     return this.firestore.collection('Patient').snapshotChanges();
   }
 
-  deletePatient(data) {
-    return this.firestore
-      .collection("Patient")
-      .doc(data.payload.doc.id)
-      .delete();
-  }
-/*
-  updatePatient(patient: Patient, id) {
-    return this.firestore
-      .collection("Patient")
-      .doc(id)
-      .update({
-        name: patient.name,
-        telecom: patient.telecom,
-        gender: patient.gender,
-        birthDate: patient.birthDate,
-        address: patient.address,
-      });
-  }
-  */
-  updatePatient(data) {
-    return this.firestore
-      .collection("Patient")
-      .doc(data.payload.doc.id)
-      .set({ completed: true }, { merge: true });
+  get(collectionName: string): Observable<Patient[]> {
+    return this.firestore.collection(collectionName, ref => {
+      let query: CollectionReference | Query = ref;
+      return query;
+    }).valueChanges() as Observable<Patient[]>;
   }
 
+  deletePatient(id: string) {
+    return this.firestore.collection("Patient").doc(id).delete();
+  }
+
+
+  getById(id: string): Observable<any> {
+    return this.firestore.collection('Patient').doc(id).valueChanges();
+  }
 
 }

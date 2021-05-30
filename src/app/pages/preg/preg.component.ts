@@ -14,12 +14,11 @@ export const PATIENTS: Patient[] = [];
   styleUrls: ['./preg.component.scss']
 })
 export class PregComponent{
-
   form: FormGroup = new FormGroup({
-    pname: new FormControl('', Validators.required),
-    tnumber: new FormControl(''),
-    bdate: new FormControl(''),
-    genderSelect: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    telecom: new FormControl(''),
+    birthDate: new FormControl(''),
+    gender: new FormControl('', Validators.required),
     address: new FormGroup({
       line: new FormControl(''),
       city: new FormControl(''),
@@ -34,7 +33,7 @@ export class PregComponent{
     if(this.form.valid){
       patients.push(this.form.value)
       console.log(this.form.value);
-      this.patientService.createPatient(this.form.value)
+      this.patientService.add(this.form.value)
       //this.createPatient(this.form.value);
     }
     this.error = true;
@@ -49,12 +48,12 @@ export class PregComponent{
   }
 
 
-
+/*
   async create(newData: Patient): Promise<any>{
     const documentId = this.firestore.createId();
 
     return this.firestore.collection('Patient').add(newData)
   }
-
+*/
 
 }

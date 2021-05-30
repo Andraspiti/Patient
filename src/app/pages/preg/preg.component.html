@@ -4,17 +4,17 @@
       <h3>Create Patient</h3>
       <mat-form-field class="max-width">
         <mat-label>Name</mat-label>
-        <input matInput type="text" placeholder="Pl. Kovács Béla" required formControlName="pname">
+        <input matInput type="text" placeholder="Pl. Kovács Béla" required formControlName="name">
       </mat-form-field>
       <br>
       <mat-form-field class="max-width">
         <mat-label>Telephone number </mat-label>
-        <input matInput type="text" placeholder="Pl. Kovács Béla" formControlName="tnumber">
+        <input matInput type="text" placeholder="Pl. Kovács Béla" formControlName="telecom">
       </mat-form-field>
       <br>
       <mat-form-field class="max-width">
         <mat-label>Gender </mat-label>
-        <mat-select formControlName="genderSelect" >
+        <mat-select formControlName="gender" >
           <mat-option *ngFor="let gender of genders" [value]="gender">
             {{gender}}
           </mat-option>
@@ -23,7 +23,7 @@
       <br>
       <mat-form-field class="max-width">
         <mat-label>Birth Date </mat-label>
-        <input matInput type="text" placeholder="2020.02.04"  formControlName="bdate">
+        <input matInput type="text" placeholder="2020.02.04"  formControlName="birthDate">
       </mat-form-field>
 
       <div formGroupName="address">
@@ -54,7 +54,3 @@
   </mat-card>
 
 </div>
-<!--   line: string,
-  city: string,
-  postalCode?: number,
-  country?: string, -->
